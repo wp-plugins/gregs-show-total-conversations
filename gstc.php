@@ -3,7 +3,7 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://counsellingresource.com/features/2009/02/16/show-total-conversations
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.0
+Version: 1.0.1
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com
 */
@@ -83,9 +83,9 @@ function gstc_show_discussions_number_manually($zero = false, $one = false, $mor
 if (!gstc_show_here() ) { 
 $override = get_option('gstc_style_override');
 if ($override == 1) {
-$zero = htmlspecialchars_decode(get_option('gstc_zero'));
-$one = htmlspecialchars_decode(get_option('gstc_one'));
-$more = htmlspecialchars_decode(get_option('gstc_more'));
+$zero = wp_specialchars_decode(get_option('gstc_zero'));
+$one = wp_specialchars_decode(get_option('gstc_one'));
+$more = wp_specialchars_decode(get_option('gstc_more'));
 } 
 echo gstc_show_discussions_number($zero,$one,$more);
 } else { 
@@ -94,9 +94,9 @@ return;
 }
 function gstc_add_discussions($output) {
 if (gstc_show_here() ) {
-$zero = htmlspecialchars_decode(get_option('gstc_zero'));
-$one = htmlspecialchars_decode(get_option('gstc_one'));
-$more = htmlspecialchars_decode(get_option('gstc_more'));
+$zero = wp_specialchars_decode(get_option('gstc_zero'));
+$one = wp_specialchars_decode(get_option('gstc_one'));
+$more = wp_specialchars_decode(get_option('gstc_more'));
 return $output . gstc_show_discussions_number($zero,$one,$more);
 } else {
 return $output;

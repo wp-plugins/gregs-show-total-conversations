@@ -1,6 +1,6 @@
 <?php
 /*
-	 WordPress 2.7 Plugin: Greg's Show Show Total Conversations 1.0
+	 WordPress 2.7 Plugin: Greg's Show Show Total Conversations 1.0.1
 	 Copyright (c) 2009 Greg Mulhauser
 	 
 	 File Written By:
