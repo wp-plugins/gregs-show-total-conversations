@@ -3,7 +3,7 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://counsellingresource.com/features/2009/02/16/show-total-conversations
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.0.1
+Version: 1.1
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com
 */
@@ -20,34 +20,32 @@ Author URI: http://counsellingresource.com
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-function gstc_plugin_activate() {
-add_option("gstc_auto_admin", "0");
-add_option("gstc_auto_post", "1");
-add_option("gstc_auto_index", "0");
-add_option("gstc_auto_archive", "0");
-add_option("gstc_style_override", "0");
-add_option("gstc_zero", '');
-add_option("gstc_one", __('&nbsp;(Including One Discussion Thread)','gstc-plugin'));
-add_option("gstc_more", __('&nbsp;(Including % Discussion Threads) ','gstc-plugin'));
-add_option("gstc_thank_you", "0");
-add_option("gstc_thank_you_message", "Thanks to %THIS_PLUGIN%.");
-}
-function gstc_admin_init(){
-register_setting('gstc_options', 'gstc_auto_admin', 'intval');
-register_setting('gstc_options', 'gstc_auto_post', 'intval');
-register_setting('gstc_options', 'gstc_auto_index', 'intval');
-register_setting('gstc_options', 'gstc_auto_archive', 'intval');
-register_setting('gstc_options', 'gstc_style_override', 'intval');
-register_setting('gstc_options', 'gstc_zero', 'htmlspecialchars');
-register_setting('gstc_options', 'gstc_one', 'htmlspecialchars');
-register_setting('gstc_options', 'gstc_more', 'htmlspecialchars');
-register_setting('gstc_options', 'gstc_thank_you', 'intval');
-register_setting('gstc_options', 'gstc_thank_you_message', 'wp_filter_nohtml_kses');
-}
-function gstc_plugin_menu() {
-add_options_page(__('Show Total Conversations Options', 'gstc-plugin'), __('Show Total Conversations', 'gstc-plugin'), 'manage_options', 'gregs-show-total-conversations/gstc-options.php') ;
-}
-function gstc_show_discussions_number($zero = false, $one = false, $more = false) {
+class gregsShowTotalConversations {
+var $plugin_prefix; 
+var $plugin_version; 
+var $our_name; 
+var $our_url; 
+function gregsShowTotalConversations($plugin_prefix='',$plugin_version='',$our_name='',$our_url='') {
+$this->__construct($plugin_prefix,$plugin_version,$our_name,$our_url);
+return;
+} 
+function __construct($plugin_prefix='',$plugin_version='',$our_name='',$our_url='') {
+$this->plugin_prefix = $plugin_prefix;
+$this->plugin_version = $plugin_version;
+$this->our_name = $our_name;
+$this->our_url = $our_url;
+add_action('wp_footer', array(&$this,'do_thank_you'));
+add_action('comments_number', array(&$this,'add_discussions'));
+add_action('admin_head', array(&$this,'comment_column_css') );
+return;
+} 
+function opt($name) {
+return get_option($this->plugin_prefix . '_' . $name);
+} 
+function opt_clean($name) {
+return stripslashes(wp_specialchars_decode($this->opt($name),ENT_QUOTES));
+} 
+function show_discussions_number($zero = false, $one = false, $more = false) {
 if ((!get_option('thread_comments')) || (get_option('thread_comments_depth') < 2)) return; 
 global $post,$wpdb;
 $discussions = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = " . $post->ID . " AND comment_approved = 1 AND comment_parent = 0" ));
@@ -59,70 +57,85 @@ $countarray = array_merge($countarray,$children);
 }
 $countarray = count($countarray); 
 if ($countarray > 1)
-$output = str_replace('%', number_format_i18n($countarray), ( false === $more ) ? __(' (Including % Discussion Threads) ','gstc-plugin') : $more);
+$output = str_replace('%', number_format_i18n($countarray), ( false === $more ) ? $this->opt_clean('more') : $more);
 elseif ( $countarray == 0 )
-$output = ( false === $zero ) ? __('','gstc-plugin') : $zero;
+$output = ( false === $zero ) ? $this->opt_clean('zero') : $zero;
 else 
-$output = ( false === $one ) ? __(' (Including One Discussion Thread)','gstc-plugin') : $one;
+$output = ( false === $one ) ? $this->opt_clean('one') : $one;
 return $output;
 }
 ### Function: Auto-show here
-function gstc_show_here() {
-$do_admin = get_option('gstc_auto_admin');
-$do_post = get_option('gstc_auto_post');
-$do_index = get_option('gstc_auto_index');
-$do_archive = get_option('gstc_auto_archive');
-if (is_admin() && ($do_admin==1)) return true;
-elseif (is_single() && ($do_post==1)) return true;
-elseif ((is_home() || is_front_page()) && ($do_index==1)) return true;
-elseif (is_archive() && ($do_archive==1)) return true;
+function show_here() {
+$do_admin = $this->opt('auto_admin');
+$do_post = $this->opt('auto_post');
+$do_index = $this->opt('auto_index');
+$do_archive = $this->opt('auto_archive');
+if (is_admin() && ($do_admin)) return true;
+elseif (is_single() && ($do_post)) return true;
+elseif ((is_home() || is_front_page()) && ($do_index)) return true;
+elseif (is_archive() && ($do_archive)) return true;
 else return false;
 } 
 ### Function: Show the discussion number manually
-function gstc_show_discussions_number_manually($zero = false, $one = false, $more = false) {
-if (!gstc_show_here() ) { 
-$override = get_option('gstc_style_override');
-if ($override == 1) {
-$zero = wp_specialchars_decode(get_option('gstc_zero'));
-$one = wp_specialchars_decode(get_option('gstc_one'));
-$more = wp_specialchars_decode(get_option('gstc_more'));
+function show_discussions_number_manually($zero = false, $one = false, $more = false) {
+if (!$this->show_here() ) { 
+$override = $this->opt('style_override');
+if ($override) {
+$zero = $this->opt_clean('zero');
+$one = $this->opt_clean('one');
+$more = $this->opt_clean('more');
 } 
-echo gstc_show_discussions_number($zero,$one,$more);
+echo $this->show_discussions_number($zero,$one,$more);
 } else { 
 return;
 } 
+return;
 }
-function gstc_add_discussions($output) {
-if (gstc_show_here() ) {
-$zero = wp_specialchars_decode(get_option('gstc_zero'));
-$one = wp_specialchars_decode(get_option('gstc_one'));
-$more = wp_specialchars_decode(get_option('gstc_more'));
-return $output . gstc_show_discussions_number($zero,$one,$more);
+function add_discussions($output) {
+if ($this->show_here() ) {
+$zero = $this->opt_clean('zero');
+$one = $this->opt_clean('one');
+$more = $this->opt_clean('more');
+return $output . $this->show_discussions_number($zero,$one,$more);
 } else {
 return $output;
 } 
 }
 ### Function: Thank you
-function gstc_thanks() {
-if ((get_option('gstc_thank_you') == 1) && is_single() ){ 
-$message = str_replace('%THIS_PLUGIN%','<a href="http://counsellingresource.com/features/2009/02/16/show-total-conversations/">Greg&#8217;s Show Total Conversations plugin</a>',get_option('gstc_thank_you_message'));
+function do_thank_you() {
+if (($this->opt('thank_you')) && is_single() ){
+$url = $this->our_url;
+$name = $this->our_name;
+$replacement = '<a href="' . $url . '">' . $name . '</a>';
+$message = str_replace('%THIS_PLUGIN%',$replacement,$this->opt('thank_you_message'));
 echo '<p>' . $message . '</p>';
 } 
 return;
 }
 ### Function: Widen comment column when showing on admin pages
-function gstc_comment_column_css() {
-$do_admin = get_option('gstc_auto_admin');
-if (is_admin() && ($do_admin==1))
+function comment_column_css() {
+if (is_admin() && ($this->opt('auto_admin')))
 echo "\n" . '<style type="text/css">
 table.widefat th.column-comments {width:85px;}
 </style>' . "\n";
 return;
 }
-add_filter('comments_number', 'gstc_add_discussions');
-add_action('admin_menu', 'gstc_plugin_menu');
-add_action( 'admin_init', 'gstc_admin_init' );
-register_activation_hook( __FILE__, 'gstc_plugin_activate' );
-add_action('wp_footer', 'gstc_thanks');
-add_action('admin_head', 'gstc_comment_column_css');
+} 
+if (is_admin()) {
+include ('gstc-setup-functions.php');
+function gstc_setup_setngo() {
+$prefix = 'gstc';
+$location_full = __FILE__;
+$location_local = plugin_basename(__FILE__);
+$options_page_details = array (__('Greg&#8217;s Show Total Conversations Options', 'gstc-plugin'),__('Show Total Conversations', 'gstc-plugin'),'gregs-show-total-conversations/gstc-options.php');
+new gstcSetupHandler($prefix,$location_full,$location_local,$options_page_details);
+} 
+gstc_setup_setngo();
+} 
+$gstc_instance = new gregsShowTotalConversations('gstc', '1.1', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
+function gstc_show_discussions_number_manually($zero=false, $one=false, $more=false) {
+global $gstc_instance;
+$gstc_instance->show_discussions_number_manually($zero, $one, $more);
+return;
+} 
 ?>

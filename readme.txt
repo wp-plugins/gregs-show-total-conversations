@@ -4,13 +4,19 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
 Tested up to: 2.7.1
-Stable tag: 1.0.1
+Stable tag: 1.1
 
 This plugin displays the total number of threaded conversations contained within a post's comments. Coders can call the function directly.
 
 == Description ==
 
 WordPress provides a built-in function to display the total number of comments on a given post; this plugin extends that functionality to show the number of separate threaded discussions included within that total. No theme modifications are required.
+
+= New in This Version =
+
+* Higher performance, several minor enhancements, and a revamped administrative interface
+
+For more details on what's new in the latest main release, version 1.1, please see the update announcement: [WordPress Show Total Conversations Plugin Updated](http://counsellingresource.com/features/2009/04/03/threaded-conversations-plugin-updated/)
 
 = Background =
 
@@ -67,6 +73,10 @@ The main information page for the plugin will include the FAQ: [Greg's Show Tota
 2. Greg's Show Total Conversations settings page
 
 == Revision History ==
+
+**1.1, 3 April 2009**
+
+* This version brings higher performance, several minor enhancements, and a revamped administrative interface; it is recommended for all users.
 
 **1.0.1, 24 February 2009**
 
