@@ -3,7 +3,7 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://counsellingresource.com/features/2009/02/16/show-total-conversations
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.1
+Version: 1.1.1
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com
 */
@@ -132,7 +132,7 @@ new gstcSetupHandler($prefix,$location_full,$location_local,$options_page_detail
 } 
 gstc_setup_setngo();
 } 
-$gstc_instance = new gregsShowTotalConversations('gstc', '1.1', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
+$gstc_instance = new gregsShowTotalConversations('gstc', '1.1.1', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
 function gstc_show_discussions_number_manually($zero=false, $one=false, $more=false) {
 global $gstc_instance;
 $gstc_instance->show_discussions_number_manually($zero, $one, $more);
