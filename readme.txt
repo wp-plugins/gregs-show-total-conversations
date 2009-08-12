@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
-Tested up to: 2.8
-Stable tag: 1.1.3
+Tested up to: 2.8.4
+Stable tag: 1.1.4
 
 This plugin displays the total number of threaded conversations contained within a post's comments. Coders can call the function directly.
 
@@ -14,7 +14,9 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Higher performance, several minor enhancements, and a revamped administrative interface
+* Documentation tweaks
+* Added support for [Sustainable Plugin Sponsorship Network](http://pluginsponsors.com/)
+* Fully tested with 2.8.4 (no changes)
 
 For more details on what's new in the latest main release, version 1.1, please see the update announcement: [WordPress Show Total Conversations Plugin Updated](http://counsellingresource.com/features/2009/04/03/threaded-conversations-plugin-updated/)
 
@@ -65,43 +67,38 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Frequently Asked Questions ==
 
-The main information page for the plugin will include the FAQ: [Greg's Show Total Conversations Plugin](http://counsellingresource.com/features/2009/02/16/show-total-conversations/)
+I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases.
 
 == Screenshots ==
 
 1. Total conversations number displayed with the WordPress default theme
 2. Greg's Show Total Conversations settings page
 
-== Revision History ==
+== Changelog ==
 
-**1.1.3, 19 June 2009**
+= 1.1.4, 12 August 2009 =
+* Documentation tweaks
+* Added support for [Plugin Sponsorship](http://pluginsponsors.com/)
+* Fully tested with 2.8.4 (no changes)
 
+= 1.1.3, 19 June 2009 =
 * Now supports conversation counting on pages as well as posts -- thanks to Marina
 
-**1.1.2, 11 June 2009**
-
+= 1.1.2, 11 June 2009 =
 * Fully tested with final release of WordPress 2.8
 
-**1.1.1, 15 April 2009**
-
+= 1.1.1, 15 April 2009 =
 * Fixed a minor typo which would have interfered with translations for this plugin -- thanks to Nikolay
 
-**1.1, 3 April 2009**
-
+= 1.1, 3 April 2009 =
 * This version brings higher performance, several minor enhancements, and a revamped administrative interface; it is recommended for all users.
 
-**1.0.1, 24 February 2009**
-
+= 1.0.1, 24 February 2009 =
 * Work-around for WordPress 2.7's broken implementation of htmlspecialchars_decode for PHP4 users
 
-**1.0, 16 February 2009**
-
+= 1.0, 16 February 2009 =
 * Initial public release
 * Thanks to Marina for the suggestion!
-
-== More Information ==
-
-For more information, please see this plugin's information page: [Greg's Show Total Conversations Plugin](http://counsellingresource.com/features/2009/02/16/show-total-conversations/)
 
 == Fine Print ==
 
