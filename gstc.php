@@ -3,27 +3,23 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://counsellingresource.com/features/2009/02/16/show-total-conversations
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.1.8
+Version: 1.1.9
 Author: Greg Mulhauser
 Author URI: http://counsellingresource.com
 */
 
-/*  Copyright 2009 Greg Mulhauser
+/*  Copyright (c) 2009-10 Greg Mulhauser
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+	This WordPress plugin is released under the GNU General Public
+	License (GPL) http://www.gnu.org/licenses/gpl.txt
+	
 */
+
+if (!function_exists ('is_admin')) {
+   header('Status: 403 Forbidden');
+   header('HTTP/1.1 403 Forbidden');
+   exit();
+   }
 
 class gregsShowTotalConversations {
 
@@ -148,15 +144,16 @@ if (is_admin()) {
 	  $prefix = 'gstc';
 	  $location_full = __FILE__;
 	  $location_local = plugin_basename(__FILE__);
+	  $args = compact('prefix','location_full','location_local');
 	  $options_page_details = array (__('Greg&#8217;s Show Total Conversations Options', 'gstc-plugin'),__('Show Total Conversations', 'gstc-plugin'),'gregs-show-total-conversations/gstc-options.php');
-	  new gstcSetupHandler($prefix,$location_full,$location_local,$options_page_details);
+	  new gstcSetupHandler($args,$options_page_details);
 	  } // end setup function
    gstc_setup_setngo();
    } // end admin-only stuff
 
 // Note the following is not wrapped in an 'else' because the plugin adds functionalty to the admin pages as well
 
-$gstc_instance = new gregsShowTotalConversations('gstc', '1.1.8', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
+$gstc_instance = new gregsShowTotalConversations('gstc', '1.1.9', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
 function gstc_show_discussions_number_manually($zero=false, $one=false, $more=false) {
    global $gstc_instance;
    $gstc_instance->show_discussions_number_manually($zero, $one, $more);

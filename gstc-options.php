@@ -1,5 +1,11 @@
 <?php
 
+if (!function_exists ('is_admin')) {
+   header('Status: 403 Forbidden');
+   header('HTTP/1.1 403 Forbidden');
+   exit();
+   }
+
 require_once('gstc-options-functions.php');
 
 function gstc_options_setngo() {
@@ -36,7 +42,9 @@ $pages = array (
 			   ),
 			   );
 
-$options_handler = new gstcOptionsHandler($replacements,$pages,$domain,$plugin_prefix,$subdir,$instname); // prepares settings
+$args = compact('domain','plugin_prefix','subdir','instname');
+
+$options_handler = new gstcOptionsHandler($args,$replacements,$pages); // prepares settings
 $options_handler->display_options($settings_prefix,$problems,$name,$dofull,$donated);
 
 return;
