@@ -108,6 +108,7 @@ class gstcSetupHandler {
 		// run through the settings which belong on this page
 		$filtered = array();
 		foreach ($pagekeys as $setting=>$page) {
+			if (!isset($options[$setting])) $options[$setting] = 0; // special case for checkboxes, absent when 0
 			if ($callbacks[$setting]) $filtered[$setting] = $callbacks[$setting]($options[$setting]);
 			else $filtered[$setting] = $options[$setting];
 		}
