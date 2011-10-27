@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
-Tested up to: 3.0-RC1
-Stable tag: 1.2
+Tested up to: 3.2.1
+Stable tag: 1.2.5
 
 This plugin displays the total number of threaded conversations contained within a post's comments. Coders can call the function directly.
 
@@ -14,9 +14,9 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Major reduction in database footprint in preparation for WordPress 3.0
+* Documentation updates
 
-For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Plugins Get Performance Boost](http://counsellingresource.com/features/2010/06/01/wordpress-plugins-performance-boost/)
+For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Plugins Get Performance Boost](http://gregsplugins.com/lib/2010/06/01/wordpress-plugins-performance-boost/)
 
 = Background =
 
@@ -28,7 +28,7 @@ For extra flexibility, coders can also tap into the plugin's core function direc
 
 This plugin counts any sequence of threaded replies to a top-level comment as a single 'conversation'. However many times a conversation might branch off into further threaded replies, the plugin still counts it just once.
 
-For more information, please see this plugin's information page: [Greg's Show Total Conversations Plugin for WordPress](http://counsellingresource.com/features/2009/02/16/show-total-conversations/)
+For more information, please see the 'Instructions' tab available from this plugin's admin interface.
 
 == Installation ==
 
@@ -65,7 +65,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Frequently Asked Questions ==
 
-I'll be maintaining a FAQ at the main information page for the plugin, where it can be updated independently of new releases.
+Please see the [Greg's Plugins FAQ](http://gregsplugins.com/lib/faq/).
 
 == Screenshots ==
 
@@ -74,10 +74,26 @@ I'll be maintaining a FAQ at the main information page for the plugin, where it 
 
 == Upgrade Notice ==
 
-= 1.2, 1 June 2010 =
-* Major reduction in database footprint in preparation for WordPress 3.0
+= 1.2.5, 27 October 2011 =
+* Documentation updates
 
 == Changelog ==
+
+= 1.2.5, 27 October 2011 =
+* Documentation updates
+
+= 1.2.4, 3 October 2011 =
+* Minor code cleanups
+
+= 1.2.3, 20 January 2011 =
+* Minor code cleanup
+* Testing with WP 3.1 Release Candidate 2
+
+= 1.2.2, 24 June 2010 =
+* Better workaround for WordPress 3.0's problems initialising plugins properly under multisite
+
+= 1.2.1, 24 June 2010 =
+* Workaround for rare problem where WordPress interferes with a newly activated plugin's ability to add options when using multisite/network mode
 
 = 1.2, 1 June 2010 =
 * Major reduction in database footprint in preparation for WordPress 3.0
