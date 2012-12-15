@@ -3,22 +3,21 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
-Tested up to: 3.2.1
-Stable tag: 1.2.6
+Tested up to: 3.5
+Stable tag: 1.2.7
 
 This plugin displays the total number of threaded conversations contained within a post's comments. Coders can call the function directly.
 
 == Description ==
 
+**NOTE:** Please do NOT use the WordPress forums to seek support for this plugin. Support for GSTC is handled on [our own site](http://gregsplugins.com/lib/faq/).
+
 WordPress provides a built-in function to display the total number of comments on a given post; this plugin extends that functionality to show the number of separate threaded discussions included within that total. No theme modifications are required.
 
 = New in This Version =
 
-* Removed PluginSponsors.com code following threats that the plugin would be expelled from the plugin repository for using the code to display sponsorship messages
-
-For more details on the threats which have removed financial support for this plugin, see [GregsPlugins.com](http://gregsplugins.com/lib/2011/11/26/automattic-bullies/). Following the initial threats, we have now been told that NO type of passive loading of an external resource for advertising purposes or sponsorship purposes will be permitted without explicit prior opt-in by the user -- i.e., no JavaScript, no iframes, no plain image loading of any kind. If you see any type of advertising of any kind in any plugin which loads any resource from any external server, you will know that this policy is not yet being fairly, uniformly and impartially applied. When it is fairly and uniformly and impartially applied, you will no longer see any type of advertising loading any external resource unless you have explicitly opted into seeing it.
-
-For more details on what's new in the latest main release, version 1.2, please see the update announcement: [WordPress Plugins Get Performance Boost](http://gregsplugins.com/lib/2010/06/01/wordpress-plugins-performance-boost/)
+* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
+* Confirmed 3.5 compatibility.
 
 = Background =
 
@@ -33,6 +32,8 @@ This plugin counts any sequence of threaded replies to a top-level comment as a 
 For more information, please see the 'Instructions' tab available from this plugin's admin interface.
 
 == Installation ==
+
+**NOTE:** Please do NOT use the WordPress forums to seek support for this plugin. Support for GSTC is handled on [our own site](http://gregsplugins.com/lib/faq/).
 
 1. Unzip the plugin archive
 2. Upload the entire folder `gregs-show-total-conversations` to `/wp-content/plugins/`
@@ -67,7 +68,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Frequently Asked Questions ==
 
-Please see the [Greg's Plugins FAQ](http://gregsplugins.com/lib/faq/).
+**NOTE:** Please do NOT use the WordPress forums to seek support for this plugin. Support for GSTC is handled on [our own site](http://gregsplugins.com/lib/faq/).
 
 == Screenshots ==
 
@@ -76,10 +77,15 @@ Please see the [Greg's Plugins FAQ](http://gregsplugins.com/lib/faq/).
 
 == Upgrade Notice ==
 
-= 1.2.6, 26 November 2011 =
-* Removed PluginSponsors.com code following threats that the plugin would be expelled from the plugin repository for using the code to display sponsorship messages
+= 1.2.7, 15 December 2012 =
+* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
+* Confirmed 3.5 compatibility.
 
 == Changelog ==
+
+= 1.2.7, 15 December 2012 =
+* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
+* Confirmed 3.5 compatibility.
 
 = 1.2.6, 26 November 2011 =
 * Removed PluginSponsors.com code following threats that the plugin would be expelled from the plugin repository for using the code to display sponsorship messages
