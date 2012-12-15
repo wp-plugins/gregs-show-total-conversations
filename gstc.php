@@ -163,8 +163,11 @@ if (is_admin()) {
 	include ('gstc-setup-functions.php');
 	function gstc_setup_setngo() {
 		$prefix = 'gstc';
-		$location_full = __FILE__;
-		$location_local = plugin_basename(__FILE__);
+		// don't use plugin_basename -- buggy when using symbolic links
+		$dir = basename(dirname( __FILE__)) . '/';
+		$base = basename( __FILE__);
+		$location_full = WP_PLUGIN_DIR . '/' . $dir . $base;
+		$location_local = $dir . $base;
 		$args = compact('prefix','location_full','location_local');
 		$options_page_details = array (__('Greg&#8217;s Show Total Conversations Options', 'gstc-plugin'),__('Show Total Conversations', 'gstc-plugin'),'gregs-show-total-conversations/gstc-options.php');
 		new gstcSetupHandler($args,$options_page_details);
