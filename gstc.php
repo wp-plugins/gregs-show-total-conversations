@@ -3,7 +3,7 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.2.7
+Version: 1.2.8
 Author: Greg Mulhauser
 Author URI: http://gregsplugins.com
 */
@@ -75,13 +75,13 @@ class gregsShowTotalConversations {
 	function show_discussions_number($zero = false, $one = false, $more = false) {
 		if ((!get_option('thread_comments')) || (get_option('thread_comments_depth') < 2)) return; // if no threading, don't bother
 		global $post,$wpdb;
-		// get an array of all top level comment IDs
-		$discussions = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = " . $post->ID . " AND comment_approved = 1 AND comment_parent = 0" ));
+		// get an array of all top level comment IDs, passing in post->ID as an argument for wpdb->prepare pedantry (better escape those integers!)
+		$discussions = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = 1 AND comment_parent = 0" , $post->ID));
 		if ($discussions == '') return;
 		$countarray = array();
 		foreach ($discussions as $thread) {
-			// now for each of those, get an array of at most 1 comment which has that comment as a parent
-			$children = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = " . $post->ID . " AND comment_approved = 1 AND comment_parent = " . $thread->comment_ID . " ORDER BY comment_date_gmt DESC LIMIT 1"));
+			// now for each of those, get an array of at most 1 comment which has that comment as a parent, passing in post->ID and thread->comment_ID as arguments for wpdb->prepare pedantry (better escape those integers!)
+			$children = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = 1 AND comment_parent = %d ORDER BY comment_date_gmt DESC LIMIT 1", $post->ID, $thread->comment_ID));
 			$countarray = array_merge($countarray,$children);
 		}
 		$countarray = count($countarray); // how many were there which count a top-level comment as their parent?
@@ -177,7 +177,7 @@ if (is_admin()) {
 
 // Note the following is not wrapped in an 'else' because the plugin adds functionalty to the admin pages as well
 
-$gstc_instance = new gregsShowTotalConversations('gstc', '1.2.7', "Greg's Show Total Conversations", 'http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/');
+$gstc_instance = new gregsShowTotalConversations('gstc', '1.2.8', "Greg's Show Total Conversations", 'http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/');
 
 function gstc_show_discussions_number_manually($zero=false, $one=false, $more=false) {
 	global $gstc_instance;

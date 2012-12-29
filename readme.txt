@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
 Tested up to: 3.5
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 
 This plugin displays the total number of threaded conversations contained within a post's comments. Coders can call the function directly.
 
@@ -16,8 +16,7 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
-* Confirmed 3.5 compatibility.
+* Tweaked wpdb->prepare for better 3.5 compatibility -- because you never know when you might meet an integer that needs escaping...
 
 = Background =
 
@@ -77,11 +76,13 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Upgrade Notice ==
 
-= 1.2.7, 15 December 2012 =
-* Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
-* Confirmed 3.5 compatibility.
+= 1.2.8, 29 December 2012 =
+* Tweaked wpdb->prepare for better 3.5 compatibility -- because you never know when you might meet an integer that needs escaping...
 
 == Changelog ==
+
+= 1.2.8, 29 December 2012 =
+* Tweaked wpdb->prepare for better 3.5 compatibility -- because you never know when you might meet an integer that needs escaping...
 
 = 1.2.7, 15 December 2012 =
 * Replaced some ancient admin page code to enable loading the plugin through a symbolic link.
