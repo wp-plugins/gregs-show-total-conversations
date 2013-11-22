@@ -1,17 +1,17 @@
 <?php
 /*
 Plugin Name: Greg's Show Total Conversations
-Plugin URI: http://counsellingresource.com/features/2009/02/16/show-total-conversations
+Plugin URI: http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.2
+Version: 1.3
 Author: Greg Mulhauser
-Author URI: http://counsellingresource.com
+Author URI: http://gregsplugins.com
 */
 
 /*  Greg's Show Total Conversations
 	
-	Copyright (c) 2009-2010 Greg Mulhauser
-	http://counsellingresource.com
+	Copyright (c) 2009-2012 Greg Mulhauser
+	http://gregsplugins.com
 	
 	Released under the GPL license
 	http://www.opensource.org/licenses/gpl-license.php
@@ -36,11 +36,6 @@ class gregsShowTotalConversations {
 	var $our_name;             // who are we?
 	var $consolidate;          // whether we'll be consolidating our options into single array, or keeping discrete
 	var $our_url;              // what's our URL?
-
-	function gregsShowTotalConversations($plugin_prefix='',$plugin_version='',$our_name='',$our_url='',$option_style='') {
-		$this->__construct($plugin_prefix,$plugin_version,$our_name,$our_url,$option_style);
-		return;
-	} 
 
 	function __construct($plugin_prefix='',$plugin_version='',$our_name='',$our_url='',$option_style='') {
 		$this->plugin_prefix = $plugin_prefix;
@@ -75,13 +70,13 @@ class gregsShowTotalConversations {
 	function show_discussions_number($zero = false, $one = false, $more = false) {
 		if ((!get_option('thread_comments')) || (get_option('thread_comments_depth') < 2)) return; // if no threading, don't bother
 		global $post,$wpdb;
-		// get an array of all top level comment IDs
-		$discussions = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = " . $post->ID . " AND comment_approved = 1 AND comment_parent = 0" ));
+		// get an array of all top level comment IDs, passing in post->ID as an argument for wpdb->prepare pedantry (better escape those integers!)
+		$discussions = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = 1 AND comment_parent = 0" , $post->ID));
 		if ($discussions == '') return;
 		$countarray = array();
 		foreach ($discussions as $thread) {
-			// now for each of those, get an array of at most 1 comment which has that comment as a parent
-			$children = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = " . $post->ID . " AND comment_approved = 1 AND comment_parent = " . $thread->comment_ID . " ORDER BY comment_date_gmt DESC LIMIT 1"));
+			// now for each of those, get an array of at most 1 comment which has that comment as a parent, passing in post->ID and thread->comment_ID as arguments for wpdb->prepare pedantry (better escape those integers!)
+			$children = $wpdb->get_results($wpdb->prepare("SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = 1 AND comment_parent = %d ORDER BY comment_date_gmt DESC LIMIT 1", $post->ID, $thread->comment_ID));
 			$countarray = array_merge($countarray,$children);
 		}
 		$countarray = count($countarray); // how many were there which count a top-level comment as their parent?
@@ -163,8 +158,11 @@ if (is_admin()) {
 	include ('gstc-setup-functions.php');
 	function gstc_setup_setngo() {
 		$prefix = 'gstc';
-		$location_full = __FILE__;
-		$location_local = plugin_basename(__FILE__);
+		// don't use plugin_basename -- buggy when using symbolic links
+		$dir = basename(dirname( __FILE__)) . '/';
+		$base = basename( __FILE__);
+		$location_full = WP_PLUGIN_DIR . '/' . $dir . $base;
+		$location_local = $dir . $base;
 		$args = compact('prefix','location_full','location_local');
 		$options_page_details = array (__('Greg&#8217;s Show Total Conversations Options', 'gstc-plugin'),__('Show Total Conversations', 'gstc-plugin'),'gregs-show-total-conversations/gstc-options.php');
 		new gstcSetupHandler($args,$options_page_details);
@@ -174,7 +172,7 @@ if (is_admin()) {
 
 // Note the following is not wrapped in an 'else' because the plugin adds functionalty to the admin pages as well
 
-$gstc_instance = new gregsShowTotalConversations('gstc', '1.2', "Greg's Show Total Conversations", 'http://counsellingresource.com/features/2009/02/16/show-total-conversations/');
+$gstc_instance = new gregsShowTotalConversations('gstc', '1.3', "Greg's Show Total Conversations", 'http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/');
 
 function gstc_show_discussions_number_manually($zero=false, $one=false, $more=false) {
 	global $gstc_instance;
