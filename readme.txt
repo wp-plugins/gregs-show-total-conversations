@@ -3,8 +3,8 @@ Contributors: GregMulhauser
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
-Tested up to: 3.8-beta-1
-Stable tag: 1.3
+Tested up to: 3.9
+Stable tag: 1.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Dropped compatibility with very old versions of PHP no longer supported by WordPress.
+* Noted compatibility with WordPress 3.9.
 
 = Background =
 
@@ -78,10 +78,13 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Upgrade Notice ==
 
-= 1.3, 22 November 2013 =
-* Dropped compatibility with very old versions of PHP no longer supported by WordPress.
+= 1.3.1, 23 April 2014 =
+* Noted compatibility with WordPress 3.9.
 
 == Changelog ==
+
+= 1.3.1, 23 April 2014 =
+* Noted compatibility with WordPress 3.9.
 
 = 1.3, 22 November 2013 =
 * Dropped compatibility with very old versions of PHP no longer supported by WordPress.

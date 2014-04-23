@@ -3,7 +3,7 @@
 Plugin Name: Greg's Show Total Conversations
 Plugin URI: http://gregsplugins.com/lib/plugin-details/gregs-show-total-conversations/
 Description: For WordPress 2.7 and above, this plugin displays the total number of threaded discussions contained within a post's comments.
-Version: 1.3
+Version: 1.3.1
 Author: Greg Mulhauser
 Author URI: http://gregsplugins.com
 */
