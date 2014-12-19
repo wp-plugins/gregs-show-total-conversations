@@ -18,7 +18,7 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Note on WordPress 4.0 compatibility.
+* Note on WordPress 4.1 compatibility.
 
 = Background =
 
@@ -79,12 +79,12 @@ However, if you would like to remove the plugin completely, just disable it via 
 == Upgrade Notice ==
 
 = 1.3.3, 19 December 2014 =
-* Note on WordPress 4.0 compatibility.
+* Note on WordPress 4.1 compatibility.
 
 == Changelog ==
 
 = 1.3.3, 19 December 2014 =
-* Note on WordPress 4.0 compatibility.
+* Note on WordPress 4.1 compatibility.
 
 = 1.3.2, 8 October 2014 =
 * Documentation update and note on WordPress 4.0 compatibility.
