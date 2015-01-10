@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
 Tested up to: 4.1
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,7 +18,7 @@ WordPress provides a built-in function to display the total number of comments o
 
 = New in This Version =
 
-* Note on WordPress 4.1 compatibility.
+* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
 
 = Background =
 
@@ -78,10 +78,13 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Upgrade Notice ==
 
-= 1.3.3, 19 December 2014 =
-* Note on WordPress 4.1 compatibility.
+= 1.3.4, 10 January 2015 =
+* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
 
 == Changelog ==
+
+= 1.3.4, 10 January 2015 =
+* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
 
 = 1.3.3, 19 December 2014 =
 * Note on WordPress 4.1 compatibility.
