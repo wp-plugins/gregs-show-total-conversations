@@ -1,10 +1,10 @@
 === Greg's Show Total Conversations ===
 Contributors: GregMulhauser
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2799661
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HZS4Z96ZND8L4
 Tags: comments, count, numbering, threading, threaded comments, display, comments.php, greg mulhauser, comment number, comment counter, listing comments, discussions, conversations
 Requires at least: 2.7
-Tested up to: 4.1
-Stable tag: 1.3.4
+Tested up to: 4.1.1
+Stable tag: 1.3.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,9 +16,12 @@ This plugin displays the total number of threaded conversations contained within
 
 WordPress provides a built-in function to display the total number of comments on a given post; this plugin extends that functionality to show the number of separate threaded discussions included within that total. No theme modifications are required.
 
+> My complete portfolio of 50 plugins, including this one, and also including the new [Faster Cache for WordPress](http://fastercache.com/) is now [available for adoption](http://gregsplugins.com/lib/sale/)!
+
 = New in This Version =
 
-* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 = Background =
 
@@ -78,10 +81,15 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 == Upgrade Notice ==
 
-= 1.3.4, 10 January 2015 =
-* Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
+= 1.3.5, 5 March 2015 =
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 == Changelog ==
+
+= 1.3.5, 5 March 2015 =
+* Updates to documentation and code improvements
+* Note on portfolion of plugins now available for adoption
 
 = 1.3.4, 10 January 2015 =
 * Fixed potential XSS vulnerability which could affect administrators who are logged in using an old browser and who visit a maliciously crafted URL on their own site. Thanks to Kacper Szurek for responsible disclosure of this problem in a different plugin.
@@ -148,7 +156,7 @@ However, if you would like to remove the plugin completely, just disable it via 
 
 = 1.1.4, 12 August 2009 =
 * Documentation tweaks
-* Added support for [Plugin Sponsorship](http://pluginsponsors.com/)
+* Added support for plugin sponsorship
 * Fully tested with 2.8.4 (no changes)
 
 = 1.1.3, 19 June 2009 =
